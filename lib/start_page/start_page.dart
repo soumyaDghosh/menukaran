@@ -1,8 +1,11 @@
-import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
+import 'package:menukaran/common/provider.dart';
+import 'package:menukaran/common/route.dart' as route;
+import 'package:menukaran/common/widgets/filled_button.dart';
+import 'package:menukaran/common/widgets/header.dart';
 import 'package:menukaran/start_page/weather_icon.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:provider/provider.dart';
 
 class StartPage extends StatefulWidget {
   const StartPage({super.key});
@@ -13,13 +16,19 @@ class StartPage extends StatefulWidget {
 
 class _StartPageState extends State<StartPage> {
   @override
+  void dispose() {
+    context
+        .read<ValueProvider>()
+        .controllers
+        .forEach((element) => element.dispose());
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const YaruWindowTitleBar(
+      appBar: const TitleBar(
         title: Text(appTitle),
-        style: YaruTitleBarStyle.normal,
-        border: BorderSide.none,
-        backgroundColor: Colors.transparent,
       ),
       body: Center(
         child: Padding(
@@ -28,25 +37,17 @@ class _StartPageState extends State<StartPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                iconMap[TimeOfDay.now()]?.$2 ?? 'Welcome',
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
               const WeatherIcon(),
               Text(
                 greeting,
                 style: const TextStyle(fontSize: 15),
               ),
-              FilledButton(
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(Theme.of(context).primaryColor),
+              ButtonFilled(
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  route.createDesktop,
                 ),
-                onPressed: () {},
-                child: const Text(filledButton1),
+                text: filledButton1,
               ),
             ],
           ),
