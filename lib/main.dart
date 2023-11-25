@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:menukaran/start_page/start_page.dart';
+import 'package:menukaran/common/provider.dart';
+import 'package:menukaran/common/route.dart';
+import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
+import 'package:yaru_widgets/yaru_widgets.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await YaruWindowTitleBar.ensureInitialized();
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => ValueProvider(),
+    ),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +24,8 @@ class MyApp extends StatelessWidget {
         theme: yaru.theme,
         darkTheme: yaru.darkTheme,
         debugShowCheckedModeBanner: false,
-        home: const StartPage(),
+        initialRoute: startPage,
+        onGenerateRoute: routecontroller,
       ),
     );
   }
