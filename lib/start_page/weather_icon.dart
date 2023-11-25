@@ -1,6 +1,5 @@
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:menukaran/common/constants.dart';
 
 class WeatherIcon extends StatelessWidget {
   const WeatherIcon({super.key});
