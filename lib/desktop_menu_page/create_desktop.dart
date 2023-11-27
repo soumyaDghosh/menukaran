@@ -168,7 +168,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         '${context.read<ValueProvider>().controllers[0].text}.desktop',
                   );
                   if (path == null) {
-                    print(path);
+                    print(path.toString());
                     snackbarKey.currentState?.hideCurrentSnackBar();
                     snackbarKey.currentState
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
