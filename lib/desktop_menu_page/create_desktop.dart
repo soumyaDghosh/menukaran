@@ -76,7 +76,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                     icon: context.read<ValueProvider>().icon.isEmpty
                         ? const Icon(
                             Icons.add_a_photo,
-                            size: kYaruIconSize * 1.5,
+                            size: kYaruIconSize * 1.15,
                           )
                         : const Icon(
                             Icons.delete,
@@ -129,13 +129,13 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         index: fields.value.$3 - 1,
                       ),
                     ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 40, right: 40, bottom: 20),
-                    child: ChoiceChipBar(),
-                  ),
                 ],
               ),
             ),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 40, right: 40, bottom: 20),
+            child: ChoiceChipBar(),
           ),
           Padding(
             padding: const EdgeInsets.only(
@@ -164,7 +164,8 @@ class _CreateDesktopState extends State<CreateDesktop> {
                 try {
                   final path = await FilePicker.platform.getDirectoryPath(
                       dialogTitle: installhelp[0],
-                      initialDirectory: '$home/.local/share/applications/');
+                      initialDirectory:
+                          '/home/$userName/.local/share/applications/');
                   if (path == null) {
                     snackbarKey.currentState?.hideCurrentSnackBar();
                     snackbarKey.currentState

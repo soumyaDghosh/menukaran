@@ -32,6 +32,9 @@ class ValueProvider extends ChangeNotifier {
         name: SpecificationLocaleString(controllers[0].text),
         exec: SpecificationString(controllers[1].text),
         icon: SpecificationIconString(icon),
+        tryExec: SpecificationString(controllers[5].text),
+        comment: SpecificationLocaleString(controllers[3].text),
+        genericName: SpecificationLocaleString(controllers[2].text),
       );
       final entry = DesktopFileContents(
           entry: desktopEntry, actions: [], unrecognisedGroups: []);

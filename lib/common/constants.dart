@@ -12,6 +12,10 @@ const filledButton1 = 'Create Desktop File';
 const desktopFields = {
   'name': ('Desktop Name', 'Mandatory', 1),
   'executable': ('Executable Path', 'Mandatory', 2),
+  'genericname': ('GenericName', '', 3),
+  'comment': ('Comment', '', 4),
+  'onlyshowin': ('OnlyShowIn', '', 5),
+  'tryexec': ('TryExec', '', 6)
 };
 const installhelp = [
   'Select the .local/share/applications folder',
