@@ -16,6 +16,7 @@ class DesktopCopied extends StatefulWidget {
 class _DesktopCopiedState extends State<DesktopCopied> {
   @override
   Widget build(BuildContext context) {
+    bool lightmode = Brightness.light == Theme.of(context).brightness;
     return Scaffold(
       appBar: TitleBar(
         leading: YaruBackButton(
@@ -25,12 +26,12 @@ class _DesktopCopiedState extends State<DesktopCopied> {
           },
         ),
       ),
-      body: const Center(
+      body: Center(
         child: YaruAnimatedIcon(
-          YaruAnimatedOkIcon(filled: true),
+          const YaruAnimatedOkIcon(filled: true),
           size: 200,
-          duration: Duration(seconds: 1),
-          color: Colors.greenAccent,
+          duration: const Duration(seconds: 1),
+          color: lightmode ? Colors.greenAccent : Colors.green,
         ),
       ),
     );
