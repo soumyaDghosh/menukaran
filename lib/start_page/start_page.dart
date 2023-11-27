@@ -31,18 +31,15 @@ class _StartPageState extends State<StartPage> {
         title: Text(appTitle),
       ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 100, bottom: 100),
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height - 200,
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               const WeatherIcon(),
-              Text(
-                greeting,
-                style: const TextStyle(fontSize: 15),
-              ),
               ButtonFilled(
+                elevated: true,
                 onPressed: () => Navigator.pushNamed(
                   context,
                   route.createDesktop,
