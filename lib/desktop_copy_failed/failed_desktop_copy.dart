@@ -3,7 +3,6 @@ import 'package:icon_animated/icon_animated.dart';
 import 'package:menukaran/common/provider.dart';
 import 'package:menukaran/common/widgets/header.dart';
 import 'package:provider/provider.dart';
-import 'package:yaru_icons/yaru_icons.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 class DesktopCopyFailed extends StatefulWidget {
