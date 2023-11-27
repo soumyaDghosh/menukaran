@@ -88,12 +88,12 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-     - family: Ubuntu-Monospace
-       fonts:
-         - asset: assets/fonts/UbuntuMono-B.ttf
-           weight: 700
-         - asset: assets/fonts/UbuntuMono-R.ttf
+  # fonts:
+  #    - family: Ubuntu-Monospace
+  #      fonts:
+  #        - asset: assets/fonts/UbuntuMono-B.ttf
+  #          weight: 700
+  #        - asset: assets/fonts/UbuntuMono-R.ttf
           
   #   - family: Trajan Pro
   #     fonts:
