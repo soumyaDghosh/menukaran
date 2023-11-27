@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
 import 'package:menukaran/common/provider.dart';
@@ -162,11 +163,11 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   }
                 }
                 try {
-                  final path = await FilePicker.platform.getDirectoryPath(
-                      dialogTitle: installhelp[0],
-                      initialDirectory:
-                          '/home/$userName/.local/share/applications/');
+                  final path = await getDirectoryPath();
+                  // initialDirectory:
+                  //     '/home/$userName/.local/share/applications/');
                   if (path == null) {
+                    print(path);
                     snackbarKey.currentState?.hideCurrentSnackBar();
                     snackbarKey.currentState
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
