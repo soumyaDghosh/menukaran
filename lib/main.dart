@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final snackbarKey = context.read<ValueProvider>().snackbarKey;
+    final navigatorKey = context.read<ValueProvider>().navigatorKey;
     return YaruTheme(
       builder: (context, yaru, child) => MaterialApp(
         theme: yaru.theme,
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: startPage,
         onGenerateRoute: routecontroller,
+        scaffoldMessengerKey: snackbarKey,
+        navigatorKey: navigatorKey,
       ),
     );
   }
