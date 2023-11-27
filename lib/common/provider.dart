@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:desktop_entry/desktop_entry.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
 
@@ -25,7 +27,8 @@ class ValueProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  dynamic installdesktop(String path) async {
+  dynamic installdesktop(String path, String fileName) async {
+    File file;
     try {
       DesktopEntry desktopEntry = DesktopEntry(
         type: SpecificationString(type),
@@ -39,15 +42,28 @@ class ValueProvider extends ChangeNotifier {
       final entry = DesktopFileContents(
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
-      await installDesktopFileFromMemory(
-        tempDir: Directory(tempdir),
-        contents: entry,
-        filenameNoExtension: 'test',
-        installationPath: path,
-      );
+      file =
+          await DesktopFileContents.toFile(Directory(tempdir), 'test', entry);
+      final fileValidate =
+          await Process.run('desktop-file-validate', [file.path]);
+      checkProcessStdErr(fileValidate);
+      // await installDesktopFileFromMemory(
+      //   tempDir: Directory(tempdir),
+      //   contents: entry,
+      //   filenameNoExtension: 'test',
+      //   installationPath: path,
+      // );
     } catch (e) {
       throw ErrorDescription(e.toString());
     }
+    const mimeType = 'text/plain';
+    final XFile textFile = XFile.fromData(
+      Uint8List.fromList(file.readAsBytesSync()),
+      mimeType: mimeType,
+      name: fileName,
+    );
+    await textFile.saveTo(path);
+
     notifyListeners();
   }
 

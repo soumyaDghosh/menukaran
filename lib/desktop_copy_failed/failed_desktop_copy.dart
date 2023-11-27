@@ -33,17 +33,15 @@ class _DesktopCopyFailedState extends State<DesktopCopyFailed> {
                 child: YaruBanner(
                   color: Colors.black,
                   padding: const EdgeInsets.all(20),
-                  child: Flexible(
-                    child: SingleChildScrollView(
-                      child: SelectableText(
-                        text,
-                        style: TextStyle(
-                          fontFamily: 'Ubuntu Mono',
-                          color: Colors.white,
-                          fontSize:
-                              Theme.of(context).textTheme.bodyLarge!.fontSize,
-                          textBaseline: TextBaseline.alphabetic,
-                        ),
+                  child: SingleChildScrollView(
+                    child: SelectableText(
+                      text,
+                      style: TextStyle(
+                        fontFamily: 'Ubuntu Mono',
+                        color: Colors.white,
+                        fontSize:
+                            Theme.of(context).textTheme.bodyLarge!.fontSize,
+                        textBaseline: TextBaseline.alphabetic,
                       ),
                     ),
                   ),

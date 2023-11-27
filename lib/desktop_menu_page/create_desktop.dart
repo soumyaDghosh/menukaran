@@ -26,6 +26,8 @@ class _CreateDesktopState extends State<CreateDesktop> {
   Widget build(BuildContext context) {
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
+    String fileName =
+        '${context.read<ValueProvider>().controllers[0].text}.desktop';
     // void showFilepicker() async {
     //   FilePickerResult? path =
     //       await FilePicker.platform.pickFiles(type: FileType.image);
@@ -163,21 +165,19 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   }
                 }
                 try {
-                  final path = await getSaveLocation(
-                    suggestedName:
-                        '${context.read<ValueProvider>().controllers[0].text}.desktop',
+                  final result = await getSaveLocation(
+                    suggestedName: fileName,
                   );
-                  if (path == null) {
-                    print(path.toString());
+                  if (result == null) {
                     snackbarKey.currentState?.hideCurrentSnackBar();
                     snackbarKey.currentState
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
-                  print(path.toString());
+                  print(result.path.toString());
                   await context
                       .read<ValueProvider>()
-                      .installdesktop(path.toString());
+                      .installdesktop(result.path.toString(), fileName);
                 } catch (e) {
                   context.read<ValueProvider>().setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);
