@@ -1,10 +1,8 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:desktop_entry/desktop_entry.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
-import 'package:menukaran/common/widgets/snack_bar.dart';
 
 class ValueProvider extends ChangeNotifier {
   final List<TextEditingController> controllers = List.generate(
@@ -27,7 +25,7 @@ class ValueProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  dynamic installdesktop() async {
+  dynamic installdesktop(String path) async {
     try {
       DesktopEntry desktopEntry = DesktopEntry(
         type: SpecificationString(type),
@@ -39,10 +37,10 @@ class ValueProvider extends ChangeNotifier {
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
       await installDesktopFileFromMemory(
-        tempDir: Directory('/home/$userName/Android'),
+        tempDir: Directory(tempdir),
         contents: entry,
         filenameNoExtension: 'test',
-        installationPath: '/home/$userName/.local/share/applications',
+        installationPath: path,
       );
     } catch (e) {
       throw ErrorDescription(e.toString());

@@ -13,6 +13,12 @@ const desktopFields = {
   'name': ('Desktop Name', 'Mandatory', 1),
   'executable': ('Executable Path', 'Mandatory', 2),
 };
+const installhelp = [
+  'Select the .local/share/applications folder',
+  'Please select the folder .local/share/application'
+];
+final home = Platform.environment['HOME'];
+final tempdir = '$home/.menukaran';
 
 const types = ['Application', 'Link', 'Directory'];
 final errorMessages = ['Necessary Field: '];

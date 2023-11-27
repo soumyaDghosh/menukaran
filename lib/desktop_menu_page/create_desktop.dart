@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:animated_icon/animated_icon.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
@@ -163,7 +162,16 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   }
                 }
                 try {
-                  await context.read<ValueProvider>().installdesktop();
+                  final path = await FilePicker.platform.getDirectoryPath(
+                      dialogTitle: installhelp[0],
+                      initialDirectory: '$home/.local/share/applications/');
+                  if (path == null) {
+                    snackbarKey.currentState?.hideCurrentSnackBar();
+                    snackbarKey.currentState
+                        ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
+                    return;
+                  }
+                  await context.read<ValueProvider>().installdesktop(path);
                 } catch (e) {
                   context.read<ValueProvider>().setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);
