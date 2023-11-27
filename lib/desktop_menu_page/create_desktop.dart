@@ -163,9 +163,9 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   }
                 }
                 try {
-                  final path = await getDirectoryPath();
-                  // initialDirectory:
-                  //     '/home/$userName/.local/share/applications/');
+                  final path = await getSaveLocation(
+                      initialDirectory:
+                          '/home/$userName/.local/share/applications/');
                   if (path == null) {
                     print(path);
                     snackbarKey.currentState?.hideCurrentSnackBar();
@@ -173,7 +173,9 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
-                  await context.read<ValueProvider>().installdesktop(path);
+                  await context
+                      .read<ValueProvider>()
+                      .installdesktop(path.toString());
                 } catch (e) {
                   context.read<ValueProvider>().setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);
