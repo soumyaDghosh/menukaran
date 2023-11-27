@@ -173,6 +173,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
+                  print(path);
                   await context
                       .read<ValueProvider>()
                       .installdesktop(path.toString());
