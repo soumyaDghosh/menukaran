@@ -164,8 +164,9 @@ class _CreateDesktopState extends State<CreateDesktop> {
                 }
                 try {
                   final path = await getSaveLocation(
-                      initialDirectory:
-                          '/home/$userName/.local/share/applications/');
+                    suggestedName:
+                        '${context.read<ValueProvider>().controllers[0].text}.desktop',
+                  );
                   if (path == null) {
                     print(path);
                     snackbarKey.currentState?.hideCurrentSnackBar();
@@ -173,7 +174,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
-                  print(path);
+                  print(path.toString());
                   await context
                       .read<ValueProvider>()
                       .installdesktop(path.toString());
