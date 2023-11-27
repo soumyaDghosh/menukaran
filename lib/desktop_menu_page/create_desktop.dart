@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:file_picker/file_picker.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
@@ -26,19 +26,19 @@ class _CreateDesktopState extends State<CreateDesktop> {
   Widget build(BuildContext context) {
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
-    void showFilepicker() async {
-      FilePickerResult? path =
-          await FilePicker.platform.pickFiles(type: FileType.image);
-      if (path != null) {
-        setState(() {
-          context.read<ValueProvider>().iconPath(path.files.single.path!);
-        });
-        return;
-      } else {
-        snackbarKey.currentState
-            ?.showSnackBar(snackBar('Cancelled!', snackbarKey));
-      }
-    }
+    // void showFilepicker() async {
+    //   FilePickerResult? path =
+    //       await FilePicker.platform.pickFiles(type: FileType.image);
+    //   if (path != null) {
+    //     setState(() {
+    //       context.read<ValueProvider>().iconPath(path.files.single.path!);
+    //     });
+    //     return;
+    //   } else {
+    //     snackbarKey.currentState
+    //         ?.showSnackBar(snackBar('Cancelled!', snackbarKey));
+    //   }
+    // }
 
     void nullicon() {
       setState(() {
@@ -71,7 +71,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   child: YaruIconButton(
                     onPressed: () {
                       context.read<ValueProvider>().icon.isEmpty
-                          ? showFilepicker()
+                          ? null // ? showFilepicker()
                           : nullicon();
                     },
                     icon: context.read<ValueProvider>().icon.isEmpty
