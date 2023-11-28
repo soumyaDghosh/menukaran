@@ -176,11 +176,12 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
-                  print(fileName);
+                  print(
+                      result.path.toString().split('/').last.split('.').first);
                   print(result.path.toString());
                   await context
                       .read<ValueProvider>()
-                      .installdesktop(result.path.toString(), fileName);
+                      .installdesktop(result.path.toString());
                 } catch (e) {
                   context.read<ValueProvider>().setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);

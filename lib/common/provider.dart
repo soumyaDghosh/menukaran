@@ -27,7 +27,7 @@ class ValueProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  dynamic installdesktop(String path, String fileName) async {
+  dynamic installdesktop(String path) async {
     File file;
     try {
       DesktopEntry desktopEntry = DesktopEntry(
@@ -42,8 +42,8 @@ class ValueProvider extends ChangeNotifier {
       final entry = DesktopFileContents(
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
-      file =
-          await DesktopFileContents.toFile(Directory(tempdir), fileName, entry);
+      file = await DesktopFileContents.toFile(
+          Directory(tempdir), path.split('/').last.split('.').first, entry);
       final fileValidate =
           await Process.run('desktop-file-validate', [file.path]);
       checkProcessStdErr(fileValidate);
@@ -60,7 +60,7 @@ class ValueProvider extends ChangeNotifier {
     final XFile textFile = XFile.fromData(
       Uint8List.fromList(file.readAsBytesSync()),
       mimeType: mimeType,
-      name: fileName,
+      name: path.split('/').last.split('.').first,
     );
     await textFile.saveTo(path);
 
