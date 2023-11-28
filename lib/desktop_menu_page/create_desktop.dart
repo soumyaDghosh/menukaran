@@ -167,6 +167,8 @@ class _CreateDesktopState extends State<CreateDesktop> {
                 try {
                   final result = await getSaveLocation(
                     suggestedName: fileName,
+                    initialDirectory:
+                        '/home/$userName/.local/share/applications',
                   );
                   if (result == null) {
                     snackbarKey.currentState?.hideCurrentSnackBar();
@@ -174,6 +176,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
+                  print(fileName);
                   print(result.path.toString());
                   await context
                       .read<ValueProvider>()

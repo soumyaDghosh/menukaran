@@ -43,7 +43,7 @@ class ValueProvider extends ChangeNotifier {
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
       file =
-          await DesktopFileContents.toFile(Directory(tempdir), 'test', entry);
+          await DesktopFileContents.toFile(Directory(tempdir), fileName, entry);
       final fileValidate =
           await Process.run('desktop-file-validate', [file.path]);
       checkProcessStdErr(fileValidate);
