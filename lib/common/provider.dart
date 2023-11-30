@@ -11,6 +11,11 @@ class ValueProvider extends ChangeNotifier {
     desktopFields.length,
     (index) => TextEditingController(),
   );
+  final List<TextEditingController> extraControllers = List.generate(
+    extraDesktopFields.length,
+    (index) => TextEditingController(),
+  );
+  List<String> optionSelected = [];
   String icon = '';
   String type = 'Application';
   String message = '';
@@ -25,6 +30,12 @@ class ValueProvider extends ChangeNotifier {
   void setType(String value) {
     type = value;
     notifyListeners();
+  }
+
+  void manupulateExtraFields(String option) {
+    optionSelected.contains(option)
+        ? optionSelected.remove(option)
+        : optionSelected.add(option);
   }
 
   dynamic installdesktop(String path) async {
@@ -60,7 +71,7 @@ class ValueProvider extends ChangeNotifier {
     final XFile textFile = XFile.fromData(
       Uint8List.fromList(file.readAsBytesSync()),
       mimeType: mimeType,
-      name: path.split('/').last.split('.').first,
+      // name: path.split('/').last.split('.').first,
     );
     await textFile.saveTo(path);
 

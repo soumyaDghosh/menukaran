@@ -24,23 +24,27 @@ class CreateDesktop extends StatefulWidget {
 class _CreateDesktopState extends State<CreateDesktop> {
   @override
   Widget build(BuildContext context) {
+    final optionsSelected = context.read<ValueProvider>().optionSelected;
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
-    String fileName =
-        '${context.read<ValueProvider>().controllers[0].text}.desktop';
-    // void showFilepicker() async {
-    //   FilePickerResult? path =
-    //       await FilePicker.platform.pickFiles(type: FileType.image);
-    //   if (path != null) {
-    //     setState(() {
-    //       context.read<ValueProvider>().iconPath(path.files.single.path!);
-    //     });
-    //     return;
-    //   } else {
-    //     snackbarKey.currentState
-    //         ?.showSnackBar(snackBar('Cancelled!', snackbarKey));
-    //   }
-    // }
+    void showFilepicker() async {
+      const XTypeGroup typeGroup = XTypeGroup(
+        label: 'images',
+        extensions: <String>['jpg', 'png'],
+      );
+      final XFile? path =
+          await openFile(acceptedTypeGroups: <XTypeGroup>[typeGroup]);
+
+      if (path != null) {
+        setState(() {
+          context.read<ValueProvider>().iconPath(path.path);
+        });
+        return;
+      } else {
+        snackbarKey.currentState
+            ?.showSnackBar(snackBar('Cancelled!', snackbarKey));
+      }
+    }
 
     void nullicon() {
       setState(() {
@@ -73,7 +77,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   child: YaruIconButton(
                     onPressed: () {
                       context.read<ValueProvider>().icon.isEmpty
-                          ? null // ? showFilepicker()
+                          ? showFilepicker()
                           : nullicon();
                     },
                     icon: context.read<ValueProvider>().icon.isEmpty
@@ -127,11 +131,32 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         top: 20,
                       ),
                       child: TextFieldBar(
+                        icon: Icon(fields.value.$4),
                         hintText: fields.value.$2,
                         labelText: fields.value.$1,
-                        index: fields.value.$3 - 1,
+                        textController: context
+                            .read<ValueProvider>()
+                            .controllers[fields.value.$3 - 1],
                       ),
                     ),
+                  for (final extraField in extraDesktopFields.entries)
+                    if (optionsSelected.contains(extraField.key))
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 40,
+                          bottom: 20,
+                          right: 40,
+                          top: 20,
+                        ),
+                        child: TextFieldBar(
+                          hintText: extraField.value.$2,
+                          labelText: extraField.value.$1,
+                          icon: Icon(extraField.value.$4),
+                          textController: context
+                              .read<ValueProvider>()
+                              .extraControllers[extraField.value.$3 - 1],
+                        ),
+                      ),
                 ],
               ),
             ),
@@ -165,6 +190,8 @@ class _CreateDesktopState extends State<CreateDesktop> {
                   }
                 }
                 try {
+                  String fileName =
+                      '${context.read<ValueProvider>().controllers[0].text}.desktop';
                   final result = await getSaveLocation(
                     suggestedName: fileName,
                     initialDirectory:
@@ -176,12 +203,9 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
-                  print(
-                      result.path.toString().split('/').last.split('.').first);
-                  print(result.path.toString());
                   await context
                       .read<ValueProvider>()
-                      .installdesktop(result.path.toString());
+                      .installdesktop(result.path);
                 } catch (e) {
                   context.read<ValueProvider>().setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);

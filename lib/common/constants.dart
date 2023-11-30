@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:yaru_icons/yaru_icons.dart';
+
 final userName = Platform.environment['USER'];
 final user = Process.runSync(
   'bash',
@@ -10,12 +12,14 @@ const appTitle = 'MenuKaran';
 final greeting = '$user, welcome to $appTitle';
 const filledButton1 = 'Create Desktop File';
 const desktopFields = {
-  'name': ('Desktop Name', 'Mandatory', 1),
-  'executable': ('Executable Path', 'Mandatory', 2),
-  'genericname': ('GenericName', '', 3),
-  'comment': ('Comment', '', 4),
-  'onlyshowin': ('OnlyShowIn', '', 5),
-  'tryexec': ('TryExec', '', 6)
+  'name': ('Desktop Name', 'Mandatory', 1, YaruIcons.insert_text),
+  'executable': ('Executable Path', 'Mandatory', 2, YaruIcons.gear),
+};
+const extraDesktopFields = {
+  'genericname': ('GenericName', '', 1, YaruIcons.insert_text),
+  'comment': ('Comment', '', 2, YaruIcons.chat_text),
+  'onlyshowin': ('OnlyShowIn', '', 3, YaruIcons.computer),
+  'tryexec': ('TryExec', '', 4, YaruIcons.gears_filled)
 };
 const installhelp = [
   'Select the .local/share/applications folder',
