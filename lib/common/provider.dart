@@ -55,15 +55,25 @@ class ValueProvider extends ChangeNotifier {
     File file;
     try {
       DesktopEntry desktopEntry = DesktopEntry(
-          type: SpecificationString(type),
-          name: SpecificationLocaleString(controllers[0].text),
-          exec: SpecificationString(controllers[1].text),
-          icon: SpecificationIconString(icon),
-          tryExec: SpecificationString(extraControllers[3].text),
-          comment: SpecificationLocaleString(extraControllers[1].text),
-          genericName: SpecificationLocaleString(extraControllers[0].text),
-          onlyShowIn: SpecificationTypeList(
-              [SpecificationString(extraControllers[2].text)]));
+        type: SpecificationString(type),
+        name: SpecificationLocaleString(controllers[0].text),
+        exec: SpecificationString(controllers[1].text),
+        icon: SpecificationIconString(icon),
+        tryExec: extraControllers[3].text.isEmpty
+            ? null
+            : SpecificationString(extraControllers[3].text),
+        comment: extraControllers[1].text.isEmpty
+            ? null
+            : SpecificationLocaleString(extraControllers[1].text),
+        genericName: extraControllers[0].text.isEmpty
+            ? null
+            : SpecificationLocaleString(extraControllers[0].text),
+        onlyShowIn: extraControllers[2].text.isEmpty
+            ? null
+            : SpecificationTypeList(
+                [SpecificationString(extraControllers[2].text)],
+              ),
+      );
       final entry = DesktopFileContents(
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
