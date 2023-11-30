@@ -203,7 +203,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ],
             ),
           ),
-          Center(
+          const Center(
             child: Text('Made with Love in Bharat <3'),
           )
         ],
