@@ -55,14 +55,15 @@ class ValueProvider extends ChangeNotifier {
     File file;
     try {
       DesktopEntry desktopEntry = DesktopEntry(
-        type: SpecificationString(type),
-        name: SpecificationLocaleString(controllers[0].text),
-        exec: SpecificationString(controllers[1].text),
-        icon: SpecificationIconString(icon),
-        tryExec: SpecificationString(controllers[5].text),
-        comment: SpecificationLocaleString(controllers[3].text),
-        genericName: SpecificationLocaleString(controllers[2].text),
-      );
+          type: SpecificationString(type),
+          name: SpecificationLocaleString(controllers[0].text),
+          exec: SpecificationString(controllers[1].text),
+          icon: SpecificationIconString(icon),
+          tryExec: SpecificationString(extraControllers[3].text),
+          comment: SpecificationLocaleString(extraControllers[1].text),
+          genericName: SpecificationLocaleString(extraControllers[0].text),
+          onlyShowIn: SpecificationTypeList(
+              [SpecificationString(extraControllers[2].text)]));
       final entry = DesktopFileContents(
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
