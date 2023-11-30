@@ -21,10 +21,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
+    final isSystemTheme =
+        context.watch<ValueProvider>().optionsSelected.contains('theme1');
+    final isdarkMode =
+        context.watch<ValueProvider>().optionsSelected.contains('theme2');
     return YaruTheme(
       builder: (context, yaru, child) => MaterialApp(
-        theme: yaru.theme,
-        darkTheme: yaru.darkTheme,
+        theme: isSystemTheme
+            ? yaru.theme
+            : isdarkMode
+                ? yaru.darkTheme
+                : yaru.theme,
+        darkTheme: isSystemTheme
+            ? yaru.darkTheme
+            : isdarkMode
+                ? yaru.darkTheme
+                : yaru.theme,
         debugShowCheckedModeBanner: false,
         initialRoute: startPage,
         onGenerateRoute: routecontroller,
