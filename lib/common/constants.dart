@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:yaru_icons/yaru_icons.dart';
 
+const sourceCode = 'https://github.com/soumyaDghosh/menukaran';
 final userName = Platform.environment['USER'];
 final user = Process.runSync(
   'bash',
@@ -11,6 +13,10 @@ final user = Process.runSync(
 const appTitle = 'MenuKaran';
 final greeting = '$user, welcome to $appTitle';
 const filledButton1 = 'Create Desktop File';
+const generalSettings = {
+  'theme1': ('Follow System Theme', 1, Icons.contrast),
+  'theme2': ('Use Dark Mode', 2, YaruIcons.clear_night_filled),
+};
 const desktopFields = {
   'name': ('Desktop Name', 'Mandatory', 1, YaruIcons.insert_text),
   'executable': ('Executable Path', 'Mandatory', 2, YaruIcons.gear),

@@ -16,18 +16,21 @@ class ValueProvider extends ChangeNotifier {
     extraDesktopFields.length,
     (index) => TextEditingController(),
   );
-  List<String> optionSelected = [];
+  List<String> fieldsSelected = [];
+  List<String> optionsSelected = [];
   String icon = '';
   String type = 'Application';
   String message = '';
   GlobalKey<ScaffoldMessengerState> snackbarKey =
       GlobalKey<ScaffoldMessengerState>();
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static const fields = 'fields';
   static const options = 'options';
 
   void getSavedOptions() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    optionSelected = prefs.getStringList(options) ?? [];
+    fieldsSelected = prefs.getStringList(fields) ?? [];
+    optionsSelected = prefs.getStringList(options) ?? [];
     notifyListeners();
   }
 
@@ -40,14 +43,22 @@ class ValueProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void manupulateExtraFields(String option) async {
+  void optionsChange(String option) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (optionSelected.contains(option)) {
-      optionSelected.remove(option);
-    } else {
-      optionSelected.add(option);
-    }
-    prefs.setStringList(options, optionSelected);
+    optionsSelected.contains(option)
+        ? optionsSelected.remove(option)
+        : optionsSelected.add(option);
+    prefs.setStringList(options, optionsSelected);
+    notifyListeners();
+  }
+
+  void manupulateExtraFields(String field) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    fieldsSelected.contains(field)
+        ? fieldsSelected.remove(field)
+        : fieldsSelected.add(field);
+
+    prefs.setStringList(fields, fieldsSelected);
     notifyListeners();
   }
 

@@ -24,7 +24,7 @@ class CreateDesktop extends StatefulWidget {
 class _CreateDesktopState extends State<CreateDesktop> {
   @override
   Widget build(BuildContext context) {
-    final optionsSelected = context.read<ValueProvider>().optionSelected;
+    final optionsSelected = context.read<ValueProvider>().fieldsSelected;
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
     void showFilepicker() async {
