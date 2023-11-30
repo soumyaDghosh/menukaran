@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:menukaran/common/provider.dart';
-import 'package:provider/provider.dart';
 
 class TextFieldBar extends StatefulWidget {
   const TextFieldBar({
