@@ -3,7 +3,6 @@ import 'package:menukaran/common/constants.dart';
 import 'package:menukaran/common/provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:yaru_icons/yaru_icons.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 class SettingsPage extends StatefulWidget {
