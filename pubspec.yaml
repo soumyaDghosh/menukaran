@@ -41,7 +41,6 @@ dependencies:
       url: https://github.com/soumyaDghosh/desktop_entry.git
       ref: main
   feather_icons: ^1.2.0
-  file_picker: ^6.1.1
   file_selector: ^1.0.1
   handy_window: ^0.3.1
   icon_animated: ^1.2.1
