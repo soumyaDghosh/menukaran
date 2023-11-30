@@ -4,6 +4,7 @@ import 'package:menukaran/common/provider.dart';
 import 'package:menukaran/common/route.dart' as route;
 import 'package:menukaran/common/widgets/filled_button.dart';
 import 'package:menukaran/common/widgets/header.dart';
+import 'package:menukaran/start_page/action_menu.dart';
 import 'package:menukaran/start_page/weather_icon.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +16,12 @@ class StartPage extends StatefulWidget {
 }
 
 class _StartPageState extends State<StartPage> {
+  @override
+  void initState() {
+    context.read<ValueProvider>().getSavedOptions();
+    super.initState();
+  }
+
   @override
   void dispose() {
     context
@@ -29,6 +36,7 @@ class _StartPageState extends State<StartPage> {
     return Scaffold(
       appBar: const TitleBar(
         title: Text(appTitle),
+        leading: ActionMenu(),
       ),
       body: Center(
         child: SizedBox(

@@ -5,6 +5,7 @@ import 'package:desktop_entry/desktop_entry.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ValueProvider extends ChangeNotifier {
   final List<TextEditingController> controllers = List.generate(
@@ -22,6 +23,13 @@ class ValueProvider extends ChangeNotifier {
   GlobalKey<ScaffoldMessengerState> snackbarKey =
       GlobalKey<ScaffoldMessengerState>();
   GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static const options = 'options';
+
+  void getSavedOptions() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    optionSelected = prefs.getStringList(options) ?? [];
+    notifyListeners();
+  }
 
   void iconPath(String path) {
     icon = path;
@@ -32,10 +40,15 @@ class ValueProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void manupulateExtraFields(String option) {
-    optionSelected.contains(option)
-        ? optionSelected.remove(option)
-        : optionSelected.add(option);
+  void manupulateExtraFields(String option) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (optionSelected.contains(option)) {
+      optionSelected.remove(option);
+    } else {
+      optionSelected.add(option);
+    }
+    prefs.setStringList(options, optionSelected);
+    notifyListeners();
   }
 
   dynamic installdesktop(String path) async {
