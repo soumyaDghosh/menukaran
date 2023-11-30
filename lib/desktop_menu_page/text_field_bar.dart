@@ -7,11 +7,13 @@ class TextFieldBar extends StatefulWidget {
     super.key,
     required this.hintText,
     required this.labelText,
-    required this.index,
+    required this.textController,
+    this.icon,
   });
   final String hintText;
   final String labelText;
-  final int index;
+  final TextEditingController textController;
+  final Widget? icon;
 
   @override
   State<TextFieldBar> createState() => _TextFieldBarState();
@@ -21,8 +23,9 @@ class _TextFieldBarState extends State<TextFieldBar> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: context.read<ValueProvider>().controllers[widget.index],
+      controller: widget.textController,
       decoration: InputDecoration(
+        prefixIcon: widget.icon,
         hintText: widget.hintText,
         hintStyle: const TextStyle(height: 2),
         labelText: widget.labelText,
