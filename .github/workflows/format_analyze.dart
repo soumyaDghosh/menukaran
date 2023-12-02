@@ -1,4 +1,4 @@
-name: "Analyze and Format"
+name: Analyze and Format
 
 on:
   push:
