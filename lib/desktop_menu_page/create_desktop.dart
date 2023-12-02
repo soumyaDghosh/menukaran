@@ -26,9 +26,10 @@ class CreateDesktop extends StatefulWidget {
 class _CreateDesktopState extends State<CreateDesktop> {
   @override
   Widget build(BuildContext context) {
-    final optionsSelected = context.read<ValueProvider>().fieldsSelected;
-    final snackbarKey = context.read<ValueProvider>().snackbarKey;
-    final navigatorKey = context.read<ValueProvider>().navigatorKey;
+    final provider = context.read<ValueProvider>();
+    final optionsSelected = provider.fieldsSelected;
+    final snackbarKey = provider.snackbarKey;
+    final navigatorKey = provider.navigatorKey;
     void showFilepicker() async {
       const XTypeGroup typeGroup = XTypeGroup(
         label: 'images',
@@ -214,12 +215,9 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
-                  print(widget.desktop == null);
-                  await context
-                      .read<ValueProvider>()
-                      .installdesktop(result.path, widget.desktop);
+                  provider.installdesktop(result.path, widget.desktop);
                 } catch (e) {
-                  context.read<ValueProvider>().setMessage(e.toString());
+                  provider.setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);
                   // snackbarKey.currentState
                   //     ?.showSnackBar(snackBar(e.toString(), snackbarKey));
