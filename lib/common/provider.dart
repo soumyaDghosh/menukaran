@@ -104,8 +104,12 @@ class ValueProvider extends ChangeNotifier {
       //   installationPath: path,
       // );
     } catch (e) {
+      File('$tempdir/$fileName.desktop').existsSync()
+          ? File('$tempdir/$fileName.desktop').deleteSync()
+          : null;
       throw ErrorDescription(e.toString());
     }
+    print('after error');
     const mimeType = 'text/plain';
     final XFile textFile = XFile.fromData(
       Uint8List.fromList(file.readAsBytesSync()),

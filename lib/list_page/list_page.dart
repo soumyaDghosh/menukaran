@@ -57,73 +57,77 @@ class _ListDesktopsState extends State<ListDesktops> {
                   return ListView.builder(
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) => YaruSection(
-                      headline: Text(
-                          '${snapshot.data![index].id.toString()}.\t${snapshot.data![index].name}'),
-                      headlinePadding:
-                          const EdgeInsets.only(top: 8, bottom: 8, left: 40),
-                      padding: EdgeInsets.zero,
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          radius: 64,
-                          backgroundImage: snapshot.data![index].icon == null ||
-                                  snapshot.data![index].icon!.isEmpty
-                              ? null
-                              : FileImage(File(snapshot.data![index].icon!)),
-                          child: snapshot.data![index].icon == null ||
-                                  snapshot.data![index].icon!.isEmpty
-                              ? const YaruPlaceholderIcon(size: Size(50, 50))
-                              : null,
-                        ),
-                        title: Text(snapshot.data![index].filename),
-                        subtitle: Text('${snapshot.data![index].executable}'),
-                        trailing: YaruIconButton(
-                          icon: const Icon(YaruIcons.trash),
-                          onPressed: () async {
-                            const XTypeGroup typeGroup = XTypeGroup(
-                              label: 'desktop',
-                              extensions: <String>['desktop'],
+                    itemBuilder: (context, index) => Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: YaruSection(
+                        headline: Text(
+                            '${snapshot.data![index].id.toString()}.\t${snapshot.data![index].name}'),
+                        headlinePadding:
+                            const EdgeInsets.only(top: 8, bottom: 8, left: 40),
+                        padding: EdgeInsets.zero,
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            radius: 64,
+                            backgroundImage: snapshot.data![index].icon ==
+                                        null ||
+                                    snapshot.data![index].icon!.isEmpty
+                                ? null
+                                : FileImage(File(snapshot.data![index].icon!)),
+                            child: snapshot.data![index].icon == null ||
+                                    snapshot.data![index].icon!.isEmpty
+                                ? const YaruPlaceholderIcon(size: Size(50, 50))
+                                : null,
+                          ),
+                          title: Text(snapshot.data![index].filename),
+                          subtitle: Text('${snapshot.data![index].executable}'),
+                          trailing: YaruIconButton(
+                            icon: const Icon(YaruIcons.trash),
+                            onPressed: () async {
+                              const XTypeGroup typeGroup = XTypeGroup(
+                                label: 'desktop',
+                                extensions: <String>['desktop'],
+                              );
+                              final XFile? deletingPath = await openFile(
+                                acceptedTypeGroups: <XTypeGroup>[typeGroup],
+                                initialDirectory:
+                                    '$home/.local/share/applications',
+                                confirmButtonText:
+                                    'Select ${snapshot.data![index].filename}',
+                              );
+                              if (deletingPath != null) {
+                                File(deletingPath.path).deleteSync();
+                              } else {
+                                snackbarKey.currentState?.showSnackBar(
+                                    snackBar('Cancelled!', snackbarKey));
+                                return;
+                              }
+                              setState(() {
+                                DataBaseHelper.deleteDesktop(
+                                    snapshot.data![index]);
+                              });
+                            },
+                          ),
+                          onTap: () {
+                            final controllers =
+                                context.read<ValueProvider>().controllers;
+                            controllers[0].text = snapshot.data![index].name;
+                            controllers[1].text =
+                                snapshot.data![index].executable;
+                            context
+                                .read<ValueProvider>()
+                                .iconPath(snapshot.data![index].icon ?? '');
+                            context.read<ValueProvider>().type =
+                                snapshot.data![index].type;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CreateDesktop(
+                                  desktop: snapshot.data![index],
+                                ),
+                              ),
                             );
-                            final XFile? deletingPath = await openFile(
-                              acceptedTypeGroups: <XTypeGroup>[typeGroup],
-                              initialDirectory:
-                                  '$home/.local/share/applications',
-                              confirmButtonText:
-                                  'Select ${snapshot.data![index].filename}',
-                            );
-                            if (deletingPath != null) {
-                              File(deletingPath.path).deleteSync();
-                            } else {
-                              snackbarKey.currentState?.showSnackBar(
-                                  snackBar('Cancelled!', snackbarKey));
-                              return;
-                            }
-                            setState(() {
-                              DataBaseHelper.deleteDesktop(
-                                  snapshot.data![index]);
-                            });
                           },
                         ),
-                        onTap: () {
-                          final controllers =
-                              context.read<ValueProvider>().controllers;
-                          controllers[0].text = snapshot.data![index].name;
-                          controllers[1].text =
-                              snapshot.data![index].executable;
-                          context
-                              .read<ValueProvider>()
-                              .iconPath(snapshot.data![index].icon ?? '');
-                          context.read<ValueProvider>().type =
-                              snapshot.data![index].type;
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CreateDesktop(
-                                desktop: snapshot.data![index],
-                              ),
-                            ),
-                          );
-                        },
                       ),
                     ),
                   );

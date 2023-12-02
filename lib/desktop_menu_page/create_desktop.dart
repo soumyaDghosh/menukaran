@@ -55,8 +55,13 @@ class _CreateDesktopState extends State<CreateDesktop> {
     }
 
     return Scaffold(
-      appBar: const TitleBar(
-        leading: YaruBackButton(),
+      appBar: TitleBar(
+        leading: YaruBackButton(
+          onPressed: () {
+            context.read<ValueProvider>().clearControllers();
+            Navigator.maybePop(context);
+          },
+        ),
       ),
       body: Column(
         children: [
