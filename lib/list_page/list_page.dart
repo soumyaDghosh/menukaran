@@ -43,8 +43,6 @@ class _ListDesktopsState extends State<ListDesktops> {
         body: FutureBuilder<List<Desktop>?>(
           future: DataBaseHelper.getAllDesktop(),
           builder: (context, AsyncSnapshot<List<Desktop>?> snapshot) {
-            print(DataBaseHelper.getAllDesktop());
-            print(snapshot.data);
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: YaruCircularProgressIndicator());
             } else {
@@ -79,7 +77,7 @@ class _ListDesktopsState extends State<ListDesktops> {
                                 : null,
                           ),
                           title: Text(snapshot.data![index].filename),
-                          subtitle: Text('${snapshot.data![index].executable}'),
+                          subtitle: Text(snapshot.data![index].executable),
                           trailing: YaruIconButton(
                             icon: const Icon(YaruIcons.trash),
                             onPressed: () async {

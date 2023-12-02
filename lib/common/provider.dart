@@ -109,7 +109,6 @@ class ValueProvider extends ChangeNotifier {
           : null;
       throw ErrorDescription(e.toString());
     }
-    print('after error');
     const mimeType = 'text/plain';
     final XFile textFile = XFile.fromData(
       Uint8List.fromList(file.readAsBytesSync()),
