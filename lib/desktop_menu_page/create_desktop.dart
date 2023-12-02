@@ -26,10 +26,6 @@ class CreateDesktop extends StatefulWidget {
 class _CreateDesktopState extends State<CreateDesktop> {
   @override
   Widget build(BuildContext context) {
-    print(context.read<ValueProvider>().icon);
-    context.read<ValueProvider>().icon != null
-        ? print('placeholder')
-        : print('icon');
     final optionsSelected = context.read<ValueProvider>().fieldsSelected;
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
