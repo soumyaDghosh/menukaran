@@ -54,22 +54,18 @@ Thanks to all these packages and specifically the destop_entry package, this app
 3. Run `flutter build linux --release`
 
 
-## ScreenShots
 
-.github/screenshots/Screenshot%20from%202023-12-01%2002-08-32.png
+### Screenshots
+<details>
+|Dark | Light|
+|-|-|
+|![](.github/screenshots/start_page_dark.png)|![](.github/screenshots/start_page_light.png)|
+|![](.github/screenshots/create_desktop_page_dark.png)|![](.github/screenshots/create_desktop_page_light.png)|
+|![](.github/screenshots/edit_page_dark.png)|![](.github/screenshots/edit_page_dark.png)|
+|![](.github/screenshots/error_page_dark.png)|![](.github/screenshots/error_page_dark.png)|
+|![](.github/screenshots/list_page_dark.png)|![](.github/screenshots/list_page_light.png)|
+|![](.github/screenshots/list_page_empty_light.png)|![](.github/screenshots/list_page_empty_dark.png)|
+|![](.github/screenshots/settings_page_dark.png)|![](.github/screenshots/settings_page_light.png)|
+|![](.github/screenshots/success_page_dark.png)|![](.github/screenshots/success_page_light.png)|
 
-.github/screenshots/Screenshot%20from%202023-12-02%2013-52-17.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-46-59.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-47-10.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-47-21.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-47-30.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-47-35.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-47-55.png
-
-.github/screenshots/Screenshot%20from%202023-12-02%2020-48-56.png
+</details>
