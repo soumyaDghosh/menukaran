@@ -2,7 +2,7 @@
 
 Create and Install dekstop folders manually. 
 
-> The word MenuKaran, is a mix of two words, Menu is English and 'Karan' in Sanskrit means to do something
+> The word MenuKaran, is a mix of two words, Menu is in English and 'Karan' in Sanskrit means to do something
 
 ## Features
 
@@ -41,14 +41,14 @@ Thanks to all these packages and specifically the destop_entry package, this app
 
 - Snap Package:
 
-> Coming Soon
+    > Coming Soon
 
 - From Source:
 
 1. Install [Flutter](https://docs.flutter.dev/get-started/install/linux)
 2. Clone this repository by
 
-`git clone https://github.com/soumyaDghosh/sorted.git && cd sorted`
+    `git clone https://github.com/soumyaDghosh/sorted.git && cd sorted`
 
 3. Run `flutter build linux --release`
 
