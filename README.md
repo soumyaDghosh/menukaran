@@ -62,10 +62,10 @@ Thanks to all these packages and specifically the destop_entry package, this app
 |-|-|
 |![](.github/screenshots/start_page_dark.png)|![](.github/screenshots/start_page_light.png)|
 |![](.github/screenshots/create_desktop_page_dark.png)|![](.github/screenshots/create_desktop_page_light.png)|
-|![](.github/screenshots/edit_page_dark.png)|![](.github/screenshots/edit_page_dark.png)|
-|![](.github/screenshots/error_page_dark.png)|![](.github/screenshots/error_page_dark.png)|
+|![](.github/screenshots/edit_page_dark.png)|![](.github/screenshots/edit_page_light.png)|
+|![](.github/screenshots/error_page_dark.png)|![](.github/screenshots/error_page_light.png)|
 |![](.github/screenshots/list_page_dark.png)|![](.github/screenshots/list_page_light.png)|
-|![](.github/screenshots/list_page_empty_light.png)|![](.github/screenshots/list_page_empty_dark.png)|
+|![](.github/screenshots/list_page_empty_dark.png)|![](.github/screenshots/list_page_empty_light.png)|
 |![](.github/screenshots/settings_page_dark.png)|![](.github/screenshots/settings_page_light.png)|
 |![](.github/screenshots/success_page_dark.png)|![](.github/screenshots/success_page_light.png)|
 
