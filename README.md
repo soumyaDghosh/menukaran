@@ -27,9 +27,10 @@ To make this app work properly, I don't need access to any special folders direc
 * handy_window: ^0.3.1
 * icon_animated: ^1.2.1
 * lottie: ^2.7.0
+* path: ^1.8.3
 * provider: ^6.1.1
 * shared_preferences: ^2.2.2
-* ubuntu_widgets: ^0.3.0
+* sqflite_common_ffi: ^2.3.0+4
 * url_launcher: ^6.2.1
 * yaru: ^1.2.0
 * yaru_icons: ^2.2.2
