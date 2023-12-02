@@ -54,6 +54,13 @@ class _StartPageState extends State<StartPage> {
                 ),
                 text: filledButton1,
               ),
+              ButtonFilled(
+                text: 'Show List',
+                elevated: false,
+                onPressed: () => setState(() {
+                  Navigator.pushNamed(context, route.listPage);
+                }),
+              )
             ],
           ),
         ),

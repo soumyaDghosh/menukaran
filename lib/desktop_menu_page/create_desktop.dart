@@ -10,12 +10,14 @@ import 'package:menukaran/common/widgets/header.dart';
 import 'package:menukaran/common/widgets/snack_bar.dart';
 import 'package:menukaran/desktop_menu_page/choice_chip.dart';
 import 'package:menukaran/desktop_menu_page/text_field_bar.dart';
+import 'package:menukaran/models/desktop_model.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru_icons/yaru_icons.dart';
 import 'package:yaru_widgets/yaru_widgets.dart';
 
 class CreateDesktop extends StatefulWidget {
-  const CreateDesktop({super.key});
+  final Desktop? desktop;
+  const CreateDesktop({super.key, this.desktop});
 
   @override
   State<CreateDesktop> createState() => _CreateDesktopState();
@@ -24,6 +26,10 @@ class CreateDesktop extends StatefulWidget {
 class _CreateDesktopState extends State<CreateDesktop> {
   @override
   Widget build(BuildContext context) {
+    print(context.read<ValueProvider>().icon);
+    context.read<ValueProvider>().icon != null
+        ? print('placeholder')
+        : print('icon');
     final optionsSelected = context.read<ValueProvider>().fieldsSelected;
     final snackbarKey = context.read<ValueProvider>().snackbarKey;
     final navigatorKey = context.read<ValueProvider>().navigatorKey;
@@ -64,23 +70,27 @@ class _CreateDesktopState extends State<CreateDesktop> {
               children: [
                 CircleAvatar(
                   radius: 64,
-                  backgroundImage: context.read<ValueProvider>().icon.isNotEmpty
-                      ? FileImage(File(context.read<ValueProvider>().icon))
-                      : null,
-                  child: context.read<ValueProvider>().icon.isNotEmpty
+                  backgroundImage: context.read<ValueProvider>().icon == null ||
+                          context.read<ValueProvider>().icon!.isEmpty
                       ? null
-                      : const YaruPlaceholderIcon(size: Size(128, 128)),
+                      : FileImage(File(context.read<ValueProvider>().icon!)),
+                  child: context.read<ValueProvider>().icon == null ||
+                          context.read<ValueProvider>().icon!.isEmpty
+                      ? const YaruPlaceholderIcon(size: Size(128, 128))
+                      : null,
                 ),
                 Positioned(
                   right: 1,
                   bottom: 1,
                   child: YaruIconButton(
                     onPressed: () {
-                      context.read<ValueProvider>().icon.isEmpty
+                      context.read<ValueProvider>().icon == null ||
+                              context.read<ValueProvider>().icon!.isEmpty
                           ? showFilepicker()
                           : nullicon();
                     },
-                    icon: context.read<ValueProvider>().icon.isEmpty
+                    icon: context.read<ValueProvider>().icon == null ||
+                            context.read<ValueProvider>().icon!.isEmpty
                         ? const Icon(
                             Icons.add_a_photo,
                             size: kYaruIconSize * 1.15,
@@ -172,7 +182,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
             ),
             child: ButtonFilled(
               elevated: false,
-              text: 'Create',
+              text: widget.desktop != null ? 'Update' : 'Create',
               onPressed: () async {
                 for (int i = 0; i <= 1; i++) {
                   if (context
@@ -191,7 +201,7 @@ class _CreateDesktopState extends State<CreateDesktop> {
                 }
                 try {
                   String fileName =
-                      '${context.read<ValueProvider>().controllers[0].text}.desktop';
+                      '${context.read<ValueProvider>().controllers[0].text.toLowerCase()}.desktop';
                   final result = await getSaveLocation(
                     suggestedName: fileName,
                     initialDirectory:
@@ -203,9 +213,10 @@ class _CreateDesktopState extends State<CreateDesktop> {
                         ?.showSnackBar(snackBar(installhelp[1], snackbarKey));
                     return;
                   }
+                  print(widget.desktop == null);
                   await context
                       .read<ValueProvider>()
-                      .installdesktop(result.path);
+                      .installdesktop(result.path, widget.desktop);
                 } catch (e) {
                   context.read<ValueProvider>().setMessage(e.toString());
                   navigatorKey.currentState?.pushNamed(route.failedtoCopy);

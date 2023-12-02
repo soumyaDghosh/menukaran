@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/provider.dart';
 import 'package:menukaran/common/route.dart' as route;
+import 'package:menukaran/common/widgets/filled_button.dart';
 import 'package:menukaran/common/widgets/header.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru_icons/yaru_icons.dart';
@@ -21,17 +22,26 @@ class _DesktopCopiedState extends State<DesktopCopied> {
       appBar: TitleBar(
         leading: YaruBackButton(
           onPressed: () {
-            context.read<ValueProvider>().clearControllers();
             Navigator.pushNamed(context, route.startPage);
           },
         ),
       ),
       body: Center(
-        child: YaruAnimatedIcon(
-          const YaruAnimatedOkIcon(filled: true),
-          size: 200,
-          duration: const Duration(seconds: 1),
-          color: lightmode ? Colors.greenAccent : Colors.green,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            YaruAnimatedIcon(
+              const YaruAnimatedOkIcon(filled: true),
+              size: 200,
+              duration: const Duration(seconds: 1),
+              color: lightmode ? Colors.greenAccent : Colors.green,
+            ),
+            ButtonFilled(
+              text: 'Show List',
+              elevated: true,
+              onPressed: () => Navigator.pushNamed(context, route.listPage),
+            )
+          ],
         ),
       ),
     );

@@ -5,6 +5,8 @@ import 'package:desktop_entry/desktop_entry.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
+import 'package:menukaran/models/desktop_model.dart';
+import 'package:menukaran/services/database_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ValueProvider extends ChangeNotifier {
@@ -16,9 +18,10 @@ class ValueProvider extends ChangeNotifier {
     extraDesktopFields.length,
     (index) => TextEditingController(),
   );
+
   List<String> fieldsSelected = [];
   List<String> optionsSelected = [];
-  String icon = '';
+  String? icon;
   String type = 'Application';
   String message = '';
   GlobalKey<ScaffoldMessengerState> snackbarKey =
@@ -62,14 +65,15 @@ class ValueProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  dynamic installdesktop(String path) async {
+  dynamic installdesktop(String path, Desktop? desktop) async {
     File file;
+    String fileName = path.split('/').last.split('.').first.toLowerCase();
     try {
       DesktopEntry desktopEntry = DesktopEntry(
         type: SpecificationString(type),
         name: SpecificationLocaleString(controllers[0].text),
         exec: SpecificationString(controllers[1].text),
-        icon: SpecificationIconString(icon),
+        icon: SpecificationIconString(icon ?? ''),
         tryExec: extraControllers[3].text.isEmpty
             ? null
             : SpecificationString(extraControllers[3].text),
@@ -88,8 +92,8 @@ class ValueProvider extends ChangeNotifier {
       final entry = DesktopFileContents(
           entry: desktopEntry, actions: [], unrecognisedGroups: []);
 
-      file = await DesktopFileContents.toFile(
-          Directory(tempdir), path.split('/').last.split('.').first, entry);
+      file =
+          await DesktopFileContents.toFile(Directory(tempdir), fileName, entry);
       final fileValidate =
           await Process.run('desktop-file-validate', [file.path]);
       checkProcessStdErr(fileValidate);
@@ -109,7 +113,24 @@ class ValueProvider extends ChangeNotifier {
       // name: path.split('/').last.split('.').first,
     );
     await textFile.saveTo(path);
+    final Desktop model = Desktop(
+      id: desktop?.id,
+      name: controllers[0].text,
+      executable: controllers[1].text,
+      filename: path.split('/').last,
+      type: type,
+      icon: icon,
+    );
+    if (desktop == null) {
+      DataBaseHelper.addDesktop(model);
+    } else {
+      DataBaseHelper.updateDesktop(model);
+    }
 
+    File('$tempdir/$fileName.desktop').existsSync()
+        ? File('$tempdir/$fileName.desktop').deleteSync()
+        : null;
+    clearControllers();
     notifyListeners();
   }
 
@@ -118,6 +139,11 @@ class ValueProvider extends ChangeNotifier {
   }
 
   void clearControllers() {
+    icon = '';
+    type = 'Application';
+    for (final extrafield in extraControllers) {
+      extrafield.clear();
+    }
     for (final controller in controllers) {
       controller.clear();
     }
