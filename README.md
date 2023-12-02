@@ -56,3 +56,20 @@ Thanks to all these packages and specifically the destop_entry package, this app
 
 ## ScreenShots
 
+.github/screenshots/Screenshot%20from%202023-12-01%2002-08-32.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2013-52-17.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-46-59.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-47-10.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-47-21.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-47-30.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-47-35.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-47-55.png
+
+.github/screenshots/Screenshot%20from%202023-12-02%2020-48-56.png
