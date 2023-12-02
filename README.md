@@ -57,6 +57,7 @@ Thanks to all these packages and specifically the destop_entry package, this app
 
 ### Screenshots
 <details>
+
 |Dark | Light|
 |-|-|
 |![](.github/screenshots/start_page_dark.png)|![](.github/screenshots/start_page_light.png)|
