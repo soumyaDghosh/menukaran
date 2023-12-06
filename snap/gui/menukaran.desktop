@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Menu Karan
+Comment=Securely create and manage desktop files
+Keywords=Desktop;Security;AppMenu;Menu;Shortcut;Launch;
+Exec=menukaran %U
+Icon=com.soumyaDghosh.menukaran
+Terminal=false
+Categories=Utility;Flutter;
+StartupWMClass=musicpod

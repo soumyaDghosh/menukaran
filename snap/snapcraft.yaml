@@ -1,0 +1,38 @@
+name: menukaran
+base: core22
+version: '0.1'
+#adopt-info: menukaran
+summary: Securely Create and Manage dekstop files manually.
+description: |
+  Securely create and manage desktop files, without giving an arbitary app from the internet too much permission. 
+grade: stable
+confinement: strict
+
+parts:
+  menukaran:
+    # See 'snapcraft plugins'
+    plugin: flutter
+    source: https://github.com/soumyaDghosh/menukaran.git
+    override-build: |
+      craftctl default
+      #craftctl set version=$(git describe --tags --abbrev=0)
+      
+    build-packages:
+      - curl
+
+slots:
+  menukaran:
+    interface: dbus
+    bus: session
+    name: com.soumyaDghosh.menukaran
+
+plugs:
+  dot-local-share:
+    interface: personal-files
+    read:
+      - $HOME/.local/share/applications
+
+apps:
+  menukaran:
+    command: menukaran
+    extensions: [ gnome ] 
