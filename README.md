@@ -1,14 +1,20 @@
 # MenuKaran
 
-Create and Install dekstop folders manually. 
+Securely Create and Manage dekstop files manually.
+
+
 
 > The word MenuKaran, is a mix of two words, Menu is in English and 'Karan' in Sanskrit means to do something
+
+![](.github/screenshots/start_page_light.png)
 
 ## Features
 
 - Install desktop files manually.
-- Search through the list of desktop files created manually.(WIP)
-- Open and Edit any desktop file.
+- Search through the list of desktop files created manually.
+- Open and Edit any desktop file.(WIP)
+- Completely secure and easy to use.
+- Able to add extra features.
 
 To make this app work properly, I don't need access to any special folders directly, not even the access to `$HOME`. This will work completely on portals. Just to make the app proper, I'll need to read the `.local/share/applications` folder, else there will be a popup of no-access whenever try to open this folder as initial folder. Made with snap package, ecosystem and security in mind.
 
@@ -16,6 +22,7 @@ To make this app work properly, I don't need access to any special folders direc
 
 - Flutter(UI toolkit)
 - Dart(Language Backend)
+- SQL (for the database)
 
 ### Dart Packages needed
 
@@ -55,7 +62,7 @@ Thanks to all these packages and specifically the destop_entry package, this app
 
 
 
-### Screenshots
+## Screenshots
 <details>
 
 |Dark | Light|
@@ -70,3 +77,13 @@ Thanks to all these packages and specifically the destop_entry package, this app
 |![](.github/screenshots/success_page_dark.png)|![](.github/screenshots/success_page_light.png)|
 
 </details>
+
+## Thanks to
+1. [Frederik Feichtmeier](https://github.com/Feichtmeier)
+2. [Chinmay Tiwari](https://github.com/Chintiw)
+3. [David Lapshin](https://github.com/daudix) **(The great icon was made by him)**
+4. [Ubuntu Flutter Community](https://github.com/ubuntu-flutter-community)
+
+## Problems till now
+
+Do not rename an existing file, there is still no implementation in the database to catch that.
