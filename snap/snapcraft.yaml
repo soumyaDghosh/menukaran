@@ -10,7 +10,6 @@ confinement: strict
 
 parts:
   menukaran:
-    # See 'snapcraft plugins'
     plugin: flutter
     source: https://github.com/soumyaDghosh/menukaran.git
     override-build: |
@@ -27,7 +26,7 @@ slots:
     name: com.soumyaDghosh.menukaran
 
 plugs:
-  dot-local-share:
+  dot-local-share-applications:
     interface: personal-files
     read:
       - $HOME/.local/share/applications
