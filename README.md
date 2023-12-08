@@ -1,4 +1,4 @@
-# MenuKaran
+# ![](snap/gui/com.soumyaDghosh.menukaran.svg) MenuKaran
 
 Securely Create and Manage dekstop files manually.
 
@@ -6,7 +6,7 @@ Securely Create and Manage dekstop files manually.
 
 > The word MenuKaran, is a mix of two words, Menu is in English and 'Karan' in Sanskrit means to do something
 
-![](.github/screenshots/start_page_light.png)
+![](.github/screenshots/greeting_morning_light.png)
 
 ## Features
 
