@@ -88,7 +88,7 @@ class _ListDesktopsState extends State<ListDesktops> {
                               final XFile? deletingPath = await openFile(
                                 acceptedTypeGroups: <XTypeGroup>[typeGroup],
                                 initialDirectory:
-                                    '$home/.local/share/applications',
+                                    '/home/$user/.local/share/applications',
                                 confirmButtonText:
                                     'Select ${snapshot.data![index].filename}',
                               );
