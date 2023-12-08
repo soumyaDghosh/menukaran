@@ -1,4 +1,6 @@
-# ![](snap/gui/com.soumyaDghosh.menukaran.svg) MenuKaran
+# MenuKaran
+
+![](snap/gui/com.soumyaDghosh.menukaran.svg)
 
 Securely Create and Manage dekstop files manually.
 
