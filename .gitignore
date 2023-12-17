@@ -9,6 +9,10 @@
 .history
 .svn/
 migrate_working_dir/
+*.txt
+*.snap
+ci.dart
+.vscode
 
 # IntelliJ related
 *.iml
