@@ -1,4 +1,5 @@
 # MenuKaran
+[![menukaran](https://snapcraft.io/menukaran/badge.svg)](https://snapcraft.io/menukaran)
 
 ![](snap/gui/com.soumyaDghosh.menukaran.svg)
 
@@ -9,6 +10,7 @@ Securely Create and Manage dekstop files manually.
 > The word MenuKaran, is a mix of two words, Menu is in English and 'Karan' in Sanskrit means to do something
 
 ![](.github/screenshots/greeting_morning_light.png)
+
 
 ## Features
 
@@ -28,6 +30,7 @@ To make this app work properly, I don't need access to any special folders direc
 
 ### Dart Packages needed
 
+``````shell
 * animated_icon: ^0.0.5
 * cupertino_icons: ^1.0.2
 * desktop_entry
@@ -44,6 +47,7 @@ To make this app work properly, I don't need access to any special folders direc
 * yaru: ^1.2.0
 * yaru_icons: ^2.2.2
 * yaru_widgets: ^3.3.1
+````````
 
 Thanks to all these packages and specifically the destop_entry package, this app has been successful.
 
@@ -51,7 +55,7 @@ Thanks to all these packages and specifically the destop_entry package, this app
 
 - Snap Package:
 
-    > Coming Soon
+    [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/menukaran)
 
 - From Source:
 
