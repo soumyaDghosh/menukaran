@@ -1,5 +1,10 @@
+<div style="text-align: center";> 
+
+[![menukaran](https://snapcraft.io/menukaran/badge.svg)](https://snapcraft.io/menukaran) 
+
+</div>
+
 # MenuKaran
-[![menukaran](https://snapcraft.io/menukaran/badge.svg)](https://snapcraft.io/menukaran)
 
 ![](snap/gui/com.soumyaDghosh.menukaran.svg)
 
