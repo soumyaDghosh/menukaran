@@ -1,20 +1,29 @@
 name: menukaran
 base: core22
-version: '0.1'
-#adopt-info: menukaran
+adopt-info: menukaran
 summary: Securely Create and Manage dekstop files manually.
 description: |
   Securely create and manage desktop files, without giving an arbitary app from the internet too much permission. 
 grade: stable
 confinement: strict
+contact: soumyadeepghosh2004@zohomail.in
+source-code: https://github.com/soumyaDghosh/menukaran
+issues: https://github.com/soumyaDghosh/menukaran/issues/new
+website: https://github.com/soumyaDghosh/menukaran
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
 
 parts:
   menukaran:
     plugin: flutter
     source: https://github.com/soumyaDghosh/menukaran.git
+    source-tag: '0.1'
+    source-depth: 1
     override-build: |
       craftctl default
-      #craftctl set version=$(git describe --tags --abbrev=0)
+      craftctl set version=$(git describe --tags --abbrev=0)
       
     build-packages:
       - curl
