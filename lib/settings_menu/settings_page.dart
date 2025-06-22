@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
 import 'package:menukaran/common/provider.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:xdg_desktop_portal/xdg_desktop_portal.dart';
+import 'package:yaru/yaru.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -15,6 +15,9 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
+    final portal = XdgDesktopPortalClient();
+    final xdpOpenUri = portal.openUri;
+
     List<Widget> generalSettingsColumn = [];
     if (!context.read<ValueProvider>().optionsSelected.contains('theme1')) {
       for (final options in generalSettings.entries) {
@@ -95,7 +98,7 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.only(right: 8),
           child: YaruIconButton(
             icon: const Icon(Icons.code),
-            onPressed: () => launchUrl(Uri.parse(sourceCode)),
+            onPressed: () => xdpOpenUri.openUri(Uri.parse(sourceCode)),
           ),
         ),
       ),
@@ -116,7 +119,8 @@ class _SettingsPageState extends State<SettingsPage> {
           padding: const EdgeInsets.only(right: 8),
           child: YaruIconButton(
             icon: const Icon(Icons.link),
-            onPressed: () => launchUrl(Uri.parse(sourceCode)),
+            onPressed: () =>
+                xdpOpenUri.openUri(Uri.parse("$sourceCode/issues")),
           ),
         ),
       ),

@@ -1,5 +1,4 @@
 import 'dart:io';
-// import 'package:file_picker/file_picker.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/constants.dart';
@@ -12,8 +11,7 @@ import 'package:menukaran/desktop_menu_page/choice_chip.dart';
 import 'package:menukaran/desktop_menu_page/text_field_bar.dart';
 import 'package:menukaran/models/desktop_model.dart';
 import 'package:provider/provider.dart';
-import 'package:yaru_icons/yaru_icons.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:yaru/yaru.dart';
 
 class CreateDesktop extends StatefulWidget {
   final Desktop? desktop;

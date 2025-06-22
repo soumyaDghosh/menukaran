@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:menukaran/common/route.dart' as route;
 import 'package:menukaran/common/widgets/filled_button.dart';
 import 'package:menukaran/common/widgets/header.dart';
-import 'package:yaru_icons/yaru_icons.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:yaru/yaru.dart';
 
 class DesktopCopied extends StatefulWidget {
   const DesktopCopied({super.key});
@@ -28,8 +27,8 @@ class _DesktopCopiedState extends State<DesktopCopied> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            YaruAnimatedIcon(
-              const YaruAnimatedOkIcon(filled: true),
+            YaruAnimatedVectorIcon(
+              YaruAnimatedIcons.ok_filled,
               size: 200,
               duration: const Duration(seconds: 1),
               color: lightmode ? Colors.greenAccent : Colors.green,

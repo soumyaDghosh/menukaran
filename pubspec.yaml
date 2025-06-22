@@ -33,26 +33,26 @@ dependencies:
 
 
   # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  animated_icon: ^0.0.5
+  # Use with the CupertinoIcons class for iOS style icons.  
   cupertino_icons: ^1.0.2
   desktop_entry:
     git:
       url: https://github.com/soumyaDghosh/desktop_entry.git
-      ref: main
-  feather_icons: ^1.2.0
-  file_selector: ^1.0.1
-  handy_window: ^0.3.1
+      ref: main  
+  file_selector: ^1.0.3
+  handy_window: ^0.4.0
   icon_animated: ^1.2.1
-  lottie: ^2.7.0
-  path: ^1.8.3
-  provider: ^6.1.1
-  shared_preferences: ^2.2.2
-  sqflite_common_ffi: ^2.3.0+4
-  url_launcher: ^6.2.1
-  yaru: ^1.2.0
-  yaru_icons: ^2.2.2
-  yaru_widgets: ^3.3.1
+  lottie: ^3.3.1
+  path: ^1.9.1
+  provider: ^6.1.5
+  shared_preferences: ^2.5.3
+  sqflite_common_ffi: ^2.3.6
+  url_launcher: ^6.3.1
+  yaru: ^8.0.0
+  xdg_desktop_portal:
+    git: 
+      url: https://github.com/soumyaDghosh/xdg_desktop_portal.dart
+      ref: migrate-to-uri
 
 dev_dependencies:
   flutter_test:

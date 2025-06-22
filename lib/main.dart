@@ -3,7 +3,6 @@ import 'package:menukaran/common/provider.dart';
 import 'package:menukaran/common/route.dart';
 import 'package:provider/provider.dart';
 import 'package:yaru/yaru.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
 
 Future<void> main() async {
   await YaruWindowTitleBar.ensureInitialized();

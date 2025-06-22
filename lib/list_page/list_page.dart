@@ -12,8 +12,7 @@ import 'package:menukaran/desktop_menu_page/create_desktop.dart';
 import 'package:menukaran/models/desktop_model.dart';
 import 'package:menukaran/services/database_helper.dart';
 import 'package:provider/provider.dart';
-import 'package:yaru_icons/yaru_icons.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:yaru/yaru.dart';
 
 class ListDesktops extends StatefulWidget {
   const ListDesktops({super.key});

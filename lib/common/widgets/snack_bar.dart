@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/widgets/timed_progress_indicator.dart';
-import 'package:yaru/yaru.dart';
 
 SnackBar snackBar(String text, GlobalKey<ScaffoldMessengerState> snackbarKey,
     {bool isClosable = true, int microseconds = 0, int seconds = 2}) {
@@ -10,8 +9,8 @@ SnackBar snackBar(String text, GlobalKey<ScaffoldMessengerState> snackbarKey,
         Expanded(
           child: SelectableText(
             text,
-            style: TextStyle(
-              fontWeight: isMobile ? FontWeight.bold : null,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

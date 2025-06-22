@@ -3,7 +3,7 @@ import 'package:icon_animated/icon_animated.dart';
 import 'package:menukaran/common/provider.dart';
 import 'package:menukaran/common/widgets/header.dart';
 import 'package:provider/provider.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:yaru/yaru.dart';
 
 class DesktopCopyFailed extends StatefulWidget {
   const DesktopCopyFailed({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:yaru/yaru.dart';
 
 class TitleBar extends StatelessWidget implements PreferredSizeWidget {
   const TitleBar({super.key, this.title, this.leading, this.actions});

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:menukaran/common/route.dart' as route;
-import 'package:yaru_icons/yaru_icons.dart';
-import 'package:yaru_widgets/yaru_widgets.dart';
+import 'package:yaru/yaru.dart';
 
 class ActionMenu extends StatelessWidget {
   const ActionMenu({super.key});
